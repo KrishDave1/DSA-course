@@ -55,6 +55,31 @@ int rotated_array_index(vector<int> v,int n){
         return -1;
 }
 
+//Combining all 3 functions 
+int search(vector<int>& nums, int target) {
+     int n = nums.size();
+     int low = 0;
+     int high = n-1;
+     int mid= low + (high - low) / 2;
+     while(low <= high){
+        mid = low + (high - low) / 2;
+        if(nums[mid] == target) 
+         return mid;
+        if(nums[mid] >= nums[low]) { // means left side is SORTED.
+          if(target >= nums[low] && target <= nums[mid])// IF target is one of the rotated part then we will search in the unsorted array otherwise in the sorted part. 
+            {
+                high = mid - 1;
+            }
+           else low = mid + 1;
+        } 
+        else {  // means the sorted part is on the right side.
+          if(target >= nums[mid] && target <= nums[high]) //Just reverse the conditionswritten above.
+            low = mid + 1;
+          else high = mid - 1;
+        }
+      }
+      return -1;
+}
 int main()
 {
     vector<int> a = {6, 7, 0, 1, 2, 3, 4, 5};
