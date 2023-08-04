@@ -29,9 +29,35 @@ int pivot_index(vector<int> a)
     return -1;
 }
 
+int binary_search1(vector<int> v,int n,int low,int high){
+    int mid=0;
+    while(low<=high){
+        mid=(low+high)/2;
+        if (v[mid]==n)
+            return mid;
+        else if (v[mid]>n)
+            high=mid-1;
+        else
+            low=mid+1;
+    }
+    return -1;
+}
+
+int rotated_array_index(vector<int> v,int n){
+    int pivot=pivot_index(v);
+    int i1=binary_search1(v,n,0,pivot-1);
+    int i2=binary_search1(v,n,pivot,v.size()-1);
+    if (i1!=-1)
+        return i1;
+    else if (i2!=-1)
+        return i2;
+    else
+        return -1;
+}
+
 int main()
 {
     vector<int> a = {6, 7, 0, 1, 2, 3, 4, 5};
-    cout << pivot_index(a) << endl;
+    cout << rotated_array_index(a,4) << endl;
     return 0;
 }

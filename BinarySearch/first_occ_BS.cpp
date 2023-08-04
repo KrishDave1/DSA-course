@@ -11,7 +11,7 @@ int binary_search1(vector<int> v, int n)
         if (v[mid] == n)
         {
             res = mid;
-            high = mid - 1;
+            low = mid + 1;
         }
         else if (v[mid] > n)
         {
@@ -27,7 +27,7 @@ int binary_search1(vector<int> v, int n)
 
 int main()
 {
-    vector<int> v = {10, 50, 50, 50, 60, 60};
+    vector<int> v = {10, 50, 50, 50, 50, 60};
     int n = 50;
     cout << binary_search1(v, n) << endl;
 }
